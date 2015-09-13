@@ -38,7 +38,9 @@ using SocketIO;
 //}
 
 public class GameManagerScript : MonoBehaviour {
-
+	[SerializeField]
+	GameObject dino;
+	
 	JSONObject gameData;
 	SocketIOComponent socket;
 
@@ -88,6 +90,13 @@ public class GameManagerScript : MonoBehaviour {
 		Debug.Log("[SocketIO] " + e.name + " received: " + e.data);
 		// TODO: Send a trigger to the animator controller
 		// Incoming events: join, start, drawing, vote
+		
+		if(e.data.GetField ("event").str == "joined"){
+			Debug.Log("Getting a dino ready");
+			// Create a dino, put it on the screen
+			GameObject o = (GameObject)Instantiate(dino);
+			o.transform.position = 3.0F * Random.insideUnitSphere;
+		}
 		// join: play a sound
 	}
 
