@@ -77,13 +77,18 @@ public class GameManagerScript : MonoBehaviour {
 	{
 		Debug.Log("[SocketIO] " + e.name + " received: " + e.data);
 		gameData = e.data;
+		
+		string state = e.data.GetField("state").GetField("name").str; // The game's state
+		Debug.Log ("Sending trigger " + state);
+		GetComponent<Animator>().SetTrigger(state);
 	}
 
 	public void HandleEvent(SocketIOEvent e)
 	{
 		Debug.Log("[SocketIO] " + e.name + " received: " + e.data);
 		// TODO: Send a trigger to the animator controller
-
+		// Incoming events: join, start, drawing, vote
+		// join: play a sound
 	}
 
 	public void HandleAlert(SocketIOEvent e)
