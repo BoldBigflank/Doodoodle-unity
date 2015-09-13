@@ -82,6 +82,7 @@ public class GameManagerScript : MonoBehaviour {
 	public void HandleEvent(SocketIOEvent e)
 	{
 		Debug.Log("[SocketIO] " + e.name + " received: " + e.data);
+		// TODO: Send a trigger to the animator controller
 
 	}
 
